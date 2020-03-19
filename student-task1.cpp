@@ -121,8 +121,54 @@ int main()
 {  
 
 	// Write your code for Task 1
-		
+	list<Student> students;
+	list<Student>::iterator i;
+	bool moreToEnter = true;
+	string name;
+	double grade;
+
+	while (moreToEnter) {
+		cout << "Please enter student name (or exit to stop): ";
+		cin >> name;
+
+		if (name != "exit") {
+		  cout << "Please enter student grade: ";
+		  cin >> grade;
+
+		  Student s = Student(name.c_str(), grade);
+
+		  i = students.begin();
+		  bool inserted = false;
+		  while (!inserted) {
+			if (i == students.end() || s.getgrade() < (*i).getgrade()) {
+			  students.insert(i, s);
+			  inserted = true;
+			}
+			i++;
+		  }
+		} else {
+		  moreToEnter = false;
+		}
+	}
+
+  // Print out the students in ascending order
+  cout << "Printing out the students in ascending order..." << '\n';
+  for (i = students.begin(); i != students.end(); ++i) {
+    cout << (*i);
+    cout << '\n';
+  }
+  cout << '\n';
+
+  // Print out the students in descending order
+  cout << "Printing out the students in descending order..." << '\n';
+  list<Student>::reverse_iterator j;
+  for (j = students.rbegin(); j != students.rend(); ++j) {
+    cout << (*j);
+    cout << '\n';
+  }
+  cout << '\n';
 }
+
 
 
 
